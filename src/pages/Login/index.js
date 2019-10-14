@@ -5,6 +5,7 @@ import Card from '@material-ui/core/Card';
 import GithubLogin from 'react-github-login';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { Redirect } from 'react-router-dom';
 
 import { getGithubToken } from '../../redux/actions/login';
 import { styles } from './styles';
@@ -17,12 +18,15 @@ class Login extends Component {
   }
 
   onFailure = response => {
-    console.log(response);
+    alert('No ha sido exitoso intenta de nuevo más tarde.');
   }
 
   render() {
-    const { classes } = this.props;
-    console.log(this.props);
+    const { classes, githubToken } = this.props;
+
+    if (githubToken) {
+      return <Redirect to="/home"/>;
+    }
 
     return (
       <div className={ classes.container }>
