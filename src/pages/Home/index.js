@@ -1,20 +1,27 @@
 import React, { Component } from 'react';
+import Grid from '@material-ui/core/Grid';
+import { withStyles } from '@material-ui/core/styles';
 
-import User from '../../components/User';
+import LeftContainer from './components/LeftContainer';
+import RightContainer from './components/RightContainer';
+import {styles} from './style';
 
 class Home extends Component {
 
 	render() {
-		const { users } = this.props;
+		const { classes } = this.props;
 
-		let items = [];
-		if (typeof users !== 'undefined') {
-			items = users.map((value, index) => {
-				return <User key={index} {...value} />;
-			});
-		}
-		return <div>{items}</div>;
+		return (
+			<Grid container className={ classes.homeContainer }>
+				<Grid xs={3} className={classes.leftContainer}>
+					<LeftContainer />
+				</Grid>
+				<Grid xs={9} className={classes.rightContainer}>
+					<RightContainer />
+				</Grid>
+			</Grid>
+		);
 	}
 }
 
-export default Home;
+export default withStyles(styles)(Home);
