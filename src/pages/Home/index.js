@@ -26,12 +26,13 @@ class Home extends Component {
 	}
 
 	render() {
-		const { classes } = this.props;
+		const { classes, githubData } = this.props;
+		console.log(this.props);
 
 		return (
 			<Grid container className={ classes.homeContainer }>
 				<Grid item xs={3} className={classes.leftContainer}>
-					<LeftContainer />
+					<LeftContainer { ...githubData } />
 				</Grid>
 				<Grid item xs={9} className={classes.rightContainer}>
 					<RightContainer />
