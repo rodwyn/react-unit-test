@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import get from 'lodash/get';
 
 import { getProfileData, getProfileRepos } from '../../redux/actions/profile';
 import { getData } from '../../utils/storage';
@@ -17,11 +18,11 @@ class Home extends Component {
 		this.state = { githubToken: null };
 	}
 
-	componentDidMount() {
+	async componentDidMount() {
 		const githubToken = getData(GITHUB_TOKEN);
 
-		this.setState({ githubToken });
-		console.log(this.props);
+		await this.setState({ githubToken });
+		this.props.getProfileData({ githubToken });
 	}
 
 	render() {
@@ -45,10 +46,9 @@ const actions = {
 	getProfileRepos
 };
 
-const mapStateToProps = state => {
-	console.log(state);
-	return {}
-}
+const mapStateToProps = state => ({
+	githubData: get(state, 'profile.githubData', null)
+});
 
 export default compose(
 	connect(mapStateToProps, actions),
