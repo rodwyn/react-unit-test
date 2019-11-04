@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import customTheme from './config/muiTheme';
 import routes from './routes';
 
+import './styles/index.css';
+
 const App = ({ store }) => (
 	<Provider store={store}>
 		<MuiThemeProvider theme={ customTheme }>
