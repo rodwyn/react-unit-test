@@ -26,8 +26,8 @@ class Home extends Component {
 	}
 
 	render() {
-		const { classes, githubData } = this.props;
-		console.log(this.props);
+		const { classes, githubData, githubUserRepos } = this.props;
+		console.log(githubUserRepos);
 
 		return (
 			<Grid container className={ classes.homeContainer }>
@@ -35,7 +35,7 @@ class Home extends Component {
 					<LeftContainer { ...githubData } />
 				</Grid>
 				<Grid item xs={9} className={classes.rightContainer}>
-					<RightContainer />
+					<RightContainer repos={ githubUserRepos } />
 				</Grid>
 			</Grid>
 		);
